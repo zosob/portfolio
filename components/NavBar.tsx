@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { useTheme } from '@/context/Themecontext';
 
 const links = [
-  { label: 'Research',     href: '#research' },
+  { label: 'Research', href: '#research' },
   { label: 'Publications', href: '#publications' },
-  { label: 'Teaching',     href: '#teaching' },
-  { label: 'CV',           href: '/cv.pdf' },
-  { label: 'Contact',      href: '#contact' },
+  { label: 'Teaching', href: '#teaching' },
+  { label: 'CV', href: '/cv.pdf' },
+  { label: 'Contact', href: '#contact' },
 ];
  
 function SunIcon() {

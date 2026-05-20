@@ -1,8 +1,8 @@
 const stats = [
   { label: 'Papers Published', value: '16' },
-  { label: 'Projects Mentored',        value: '25' },
-  { label: 'Grad Students',     value: '8' },
-  { label: 'h-index',          value: '9' },
+  { label: 'Projects Mentored', value: '25' },
+  { label: 'Grad Students', value: '8' },
+  { label: 'h-index', value: '9' },
 ];
 
 export default function AboutCard() {
