@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&display=swap');
+@import "tailwindcss";
+
+/* ── Light theme (default) ───────────────────── */
+:root {
+  --bg-page:        #f1f5f9;
+  --bg-card:        rgba(255, 255, 255, 0.85);
+  --bg-card-solid:  #ffffff;
+  --bg-subtle:      #f8fafc;
+  --bg-muted:       #f1f5f9;
+
+  --border-card:    #e2e8f0;
+  --border-subtle:  #f1f5f9;
+
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+  --text-faint:     #cbd5e1;
+
+  --emerald:        #065f46;
+  --emerald-mid:    #059669;
+  --emerald-light:  #10b981;
+  --emerald-tag-bg: #ecfdf5;
+  --emerald-tag-bd: #a7f3d0;
+  --emerald-tag-tx: #047857;
+
+  --scrollbar-track: #f1f5f9;
+}
+
+/* ── Dark theme ──────────────────────────────── */
+[data-theme="dark"] {
+  --bg-page:        #0a0f1a;
+  --bg-card:        rgba(15, 23, 42, 0.85);
+  --bg-card-solid:  #0f172a;
+  --bg-subtle:      #1e293b;
+  --bg-muted:       #162032;
+
+  --border-card:    #1e293b;
+  --border-subtle:  #1e293b;
+
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+  --text-faint:     #334155;
+
+  --emerald:        #10b981;
+  --emerald-mid:    #34d399;
+  --emerald-light:  #6ee7b7;
+  --emerald-tag-bg: rgba(6, 95, 70, 0.25);
+  --emerald-tag-bd: rgba(16, 185, 129, 0.35);
+  --emerald-tag-tx: #34d399;
+
+  --scrollbar-track: #0a0f1a;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--emerald); border-radius: 999px; }
+
+/* Typography */
+.font-display    { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-mono-custom { font-family: 'DM Mono', monospace; }
+
+/* Bento card base — uses CSS vars so it responds to theme instantly */
+.bento-card {
+  border-radius: 1rem;
+  border: 1px solid var(--border-card);
+  background-color: var(--bg-card);
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              background-color 0.3s ease, border-color 0.3s ease;
+}
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -8px rgba(6, 95, 70, 0.15);
+}
+
+/* Emerald tag */
+.emerald-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  background-color: var(--emerald-tag-bg);
+  border: 1px solid var(--emerald-tag-bd);
+  color: var(--emerald-tag-tx);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.75rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Noise overlay */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Animated underline */
+.link-underline { position: relative; text-decoration: none; }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: var(--emerald);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+/* Fade-up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+.delay-100 { animation-delay: 0.10s; opacity: 0; }
+.delay-200 { animation-delay: 0.20s; opacity: 0; }
+.delay-300 { animation-delay: 0.30s; opacity: 0; }
+.delay-400 { animation-delay: 0.40s; opacity: 0; }
+.delay-500 { animation-delay: 0.50s; opacity: 0; }
+.delay-600 { animation-delay: 0.60s; opacity: 0; }
+.delay-700 { animation-delay: 0.70s; opacity: 0; }
